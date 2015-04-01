@@ -122,18 +122,14 @@ class BaseHandler(webapp2.RequestHandler):
 				keys.append(matrix['SLA'].key)
 
 
-		logging.info(matrix)
-
 		processes  = []
 		allProcesses = Process.query().fetch()
 
-		logging.info(allProcesses)
 
 		for process in allProcesses:
 			if (matrix['electrical'].key in process.sElec or process.sElecSentinel == True) and (matrix['graphical'].key in process.sGraph or process.sGraphSentinel == True) and (matrix['carrier'].key in process.sCarrier or process.sGraphSentinel == True) and (matrix['packaging'].key in process.sPack or process.sPackSentinel == True) and (matrix['dispatch'].key in process.sDisp or process.sDispSentinel == True) and (matrix['SLA'].key in process.sSLA or process.sSLASentinel == True):
 				processes.append(process)
 
-		logging.info(processes)
 
 		#ndb.AND(Process.services == matrix['electrical'].key,
 		#								Process.services == matrix['graphical'].key,
@@ -471,10 +467,42 @@ class getJifFromKeys(BaseHandler):
 		operations = []
 		implemented = []
 
+		for process in m['processes']:
+			process.services = []
+			if m['electrical'] in process.sElec:
+				process.services.append(m['electrical'])
+			if m['graphical'] in process.sGraph:
+				process.services.append(m['graphical'])
+			if m['carrier'] in process.sCarrier:
+				process.services.append(m['carrier'])
+			if m['packaging'] in process.sPack:
+				process.services.append(m['packaging'])
+			if m['dispatch'] in process.sDisp:
+				process.services.append(m['dispatch'])
+			if m['SLA'] in process.sSLA:
+				process.services.append(m['SLA'])
 
-
+		i=0
 		# Electrical
-		if m['processes'].sElec ==
+		for process in m['processes']:
+			logging.info(process.services)
+			if m['electrical'] in process.sElec:
+				break
+		operation = dict()
+		if process:
+			operation['process'] = process
+			operation['services'] = self.getServicesFromProcess(process)
+			for item in operation['services']:
+				implemented.append(item)
+
+		else:
+			operation['No Process'] = "No process for this service"
+			implemented.append(process.sElec)
+		operations.append(operation)
+
+
+
+
 
 
    		template_values = {
@@ -490,15 +518,26 @@ class getJifFromKeys(BaseHandler):
 			'consumable': m['consumable'],
 			'properties': m['properties'],
 			'instructions': m['instructions'],
-
 		}
+
 		return self.render_response('jif.html', **template_values)
 
-	def prepareProcesses(self, list):
-		for process in list:
-			if (process.)
+	def getServicesFromProcess(self, process, m):
+		services = []
+		if m['electrical'] in process.sElec:
+			services.append(m['electrical'])
+		if m['graphical'] in process.sGraph:
+			services.append(m['graphical'])
+		if m['carrier'] in process.sCarrier:
+			services.append(m['carrier'])
+		if m['packaging'] in process.sPack:
+			services.append(m['packaging'])
+		if m['dispatch'] in process.sDisp:
+			services.append(m['dispatch'])
+		if m['SLA'] in process.sSLA:
+			services.append(m['SLA'])
+		return services
 
-	def getProcess(self, list):
 
 
 
