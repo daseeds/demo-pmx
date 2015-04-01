@@ -469,7 +469,12 @@ class getJifFromKeys(BaseHandler):
 
 
 		operations = []
+		implemented = []
 
+
+
+		# Electrical
+		if m['processes'].sElec ==
 
 
    		template_values = {
@@ -488,6 +493,16 @@ class getJifFromKeys(BaseHandler):
 
 		}
 		return self.render_response('jif.html', **template_values)
+
+	def prepareProcesses(self, list):
+		for process in list:
+			if (process.)
+
+	def getProcess(self, list):
+
+
+
+
 
 class deleteDB(BaseHandler):
    	def get(self):
