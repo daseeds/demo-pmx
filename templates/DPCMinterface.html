@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-6">
+		<h1 class="page-header">DPPCM Interface</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>CT Code</th>
+						<th>CO</th>
+						<th>Code</th>
+						<th>Quantity</th>
+						<th>MP Code</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in list %}
+					<tr>
+						<th scope="row">{{item.CTCode}}</th>
+						<td>{{item.CO}}</td>
+						<td>{{item.code}}</td>
+						<td>{{item.quantity}}</td>
+						<td>{{item.MPCode}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+
+
+
+
+
+
+{% endblock content %}

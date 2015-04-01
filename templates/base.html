@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="{{locale_id}}">
+<head>
+  {% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title></title>
+  
+  <link href="/static/vendor/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="/static/css/styles.css" rel="stylesheet">
+  {% endblock head %}
+
+</head>
+
+<body>
+
+
+   {% block content %}
+
+
+
+   {% endblock content %}
+
+{% block footer %}
+
+
+{% endblock footer %}
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="/static/js/app.js"></script>
+
+    <!-- Scripts from page object
+    ================================================== -->
+    {% block script %}
+    {% endblock script %}
+
+  </body>
+  </html>
+

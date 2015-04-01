@@ -1,0 +1,65 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Simulations</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">Get JIF by multiple input keys</div>
+	<div class="panel-body">
+
+		<form class="form-inline" role="form" action="/test/getJifFromKeys" method="get">
+			{{ forms.select_2('Product', 'product_key', product_list) }}
+			{{ forms.select_2('Electrical', 'electrical_key', electrical_list) }}
+			{{ forms.select_2('Graphical', 'graphical_key', graphical_list) }}
+			{{ forms.select_2('Carrier', 'carrier_key', carrier_list) }}
+			{{ forms.select_2('Packaging', 'packaging_key', packaging_list) }}
+			{{ forms.select_2('Dispatch', 'dispatch_key', dispatch_list) }}
+			{{ forms.select_2('SLA', 'SLA_key', SLA_list) }}
+			{{ forms.input('', 'type', value='getFromMultipleKeys', type='hidden') }}
+			{{ forms.submit_button('Search...') }}
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">DPCM Interface 1</div>
+	<div class="panel-body">
+		Product 1
+		<form class="form-inline" role="form" action="/test/getInterfaceFromKeys" method="get">
+			{{ forms.select_2('Product', 'product_key_p1', product_list) }}
+			{{ forms.select_2('Electrical', 'electrical_key_p1', electrical_list) }}
+			{{ forms.select_2('Graphical', 'graphical_key_p1', graphical_list) }}
+			{{ forms.select_2('Carrier', 'carrier_key_p1', carrier_list) }}
+			{{ forms.select_2('Packaging', 'packaging_key_p1', packaging_list) }}
+			{{ forms.select_2('Dispatch', 'dispatch_key_p1', dispatch_list) }}
+			{{ forms.select_2('SLA', 'SLA_key_p1', SLA_list) }}
+			{{ forms.input('Quantity', 'qty_p1', value='', type='text') }}
+			<br>
+		Product 2
+			{{ forms.select_2('Product', 'product_key_p2', product_list) }}
+			{{ forms.select_2('Electrical', 'electrical_key_p2', electrical_list) }}
+			{{ forms.select_2('Graphical', 'graphical_key_p2', graphical_list) }}
+			{{ forms.select_2('Carrier', 'carrier_key_p2', carrier_list) }}
+			{{ forms.select_2('Packaging', 'packaging_key_p2', packaging_list) }}
+			{{ forms.select_2('Dispatch', 'dispatch_key_p2', dispatch_list) }}
+			{{ forms.select_2('SLA', 'SLA_key_p2', SLA_list) }}
+			{{ forms.input('', 'type', value='getInterface1', type='hidden') }}
+			{{ forms.input('Quantity', 'qty_p2', value='', type='text') }}
+			{{ forms.submit_button('Execute') }}
+		</form>
+	</div>
+</div>
+
+
+
+
+{% endblock content %}

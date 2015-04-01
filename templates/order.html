@@ -1,0 +1,119 @@
+{% extends "base2.html" %}
+{% block content %}
+
+
+<h2>Order {{order.key.id()}}</h2>
+
+<dl class="dl-horizontal">
+  <dt>Account</dt>
+  <dd>{{order.account}}</dd>
+  <dt>Data Flow</dt>
+  <dd>{{order.dataFlow}}</dd>
+  <dt>State</dt>
+  <dd>{{order.state}}</dd>
+  <dt>Sessions</dt>
+  <dd>{{sessions.__len__()}}</dd>
+  <dt>Workorders</dt>
+  <dd>{{workOrders.__len__()}}</dd>
+  <dt>Cards</dt>
+  <dd>{{cards}}</dd>
+  <dt>Status</dt>
+  <dd>{{order.status}} </dd>
+</dl>
+
+<h3>Input files</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>File Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inputFile in order.inputFiles %}
+        <tr >
+          <th scope="row">{{inputFile}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<h3>Sessions</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Account</th>
+          <th>DataFlow</th>
+          <th>Orders</th>
+          <th>WorkOrders</th>
+          <th>Cards</th>
+          <th>Modules</th>
+          <th>Status</th>
+          <th>Start</th>
+          <th>Stop</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for session in sessions %}
+        <tr {% if session.status == false %}class="danger"{% endif %}>
+          <th scope="row"><a href="/session/{{session.key.id()}}">{{session.key.id()}}</a></th>
+          <td>{{session.account}}</td>
+          <td>{{session.dataFlow}}</td>
+          <td>{{session.orders}}</td>
+          <td>{{session.workOrders}}</td>
+          <td>{{session.cards}}</td>
+          <td>{{session.moduleStatuses}}</td>
+          <td>{{session.status}}</td>
+          <td>{{session.timeStart}}</td>
+          <td>{{session.timeStop}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<h3>Workorders</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cards</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for workorder in workOrders %} 
+        <tr {% if workorder.status == false %}class="danger"{% endif %}>
+          <th scope="row"><a href="/workorder/{{workorder.key.id()}}">{{workorder.key.id()}}</a></th>
+          <th>{{workorder.cards}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<h3>Cards</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>PAN</th>
+          <th>First</th>
+          <th>Last</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for card in cards %} 
+        <tr>
+          <th scope="row">{{card.key.id()}}</a></th>
+          <th>{{card.firstName}}</th>
+          <th>{{card.lastName}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+
+{% endblock content %}

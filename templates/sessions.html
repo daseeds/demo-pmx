@@ -1,0 +1,94 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Sessions {% if accountName %} - {{accountName}}{% endif %}</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+<h2>Running Sessions</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Account</th>
+			<th>DataFlow</th>
+			<th>Orders</th>
+			<th>WorkOrders</th>
+			<th>Cards</th>
+			<th>Modules</th>
+          	<th>Target PSC(s)</th>
+			<th>Start</th>
+			<th>Stop</th>
+			<th>Progress</th>      
+		</tr>
+	</thead>
+	<tbody>
+		{% for session in sessionsRunning %}
+		<tr>
+			<th scope="row"><a href="/session/{{session.key.id()}}">{{session.key.id()}}</a></th>
+			<td><a href="/sessions/{{session.account}}">{{session.account}}</a></td>
+			<td>{{session.dataFlow}}</td>
+			<td>{{session.orders}}</td>
+			<td>{{session.workOrders}}</td>
+			<td>{{session.cards}}</td>
+			<td>{{session.moduleStatuses}}</td>
+          	<th>{% for site in session.sites %} {{site}}<br> {% endfor %}</th>
+			<td>{{session.timeStart}}</td>
+			<td>{{session.timeStop}}</td>
+			<td>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="{{session.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{session.progress}}%;">
+						{{session.progress}}%
+					</div>
+				</div>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<h2>Finished Sessions</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Account</th>
+			<th>DataFlow</th>
+			<th>Orders</th>
+			<th>WorkOrders</th>
+			<th>Cards</th>
+			<th>Modules</th>
+			<th>Status</th>
+          	<th>Target PSC(s)</th>
+			<th>Start</th>
+			<th>Stop</th>     
+			<th>Avg Speed</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for session in sessionsFinished %}
+		<tr {% if session.status == false %}class="danger"{% endif %} >
+			<th scope="row"><a href="/session/{{session.key.id()}}">{{session.key.id()}}</a></th>
+			<td><a href="/sessions/{{session.account}}">{{session.account}}</a></td>
+			<td>{{session.dataFlow}}</td>
+			<td>{{session.orders}}</td>
+			<td>{{session.workOrders}}</td>
+			<td>{{session.cards}}</td>
+			<td>{{session.moduleStatuses}}</td>
+			<td>{{session.status}}</td>
+          	<th>{% for site in session.sites %} {{site}}<br> {% endfor %}</th>			
+			<td>{{session.timeStart}}</td>
+			<td>{{session.timeStop}}</td>
+			<td>{{session.speed}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock content %}

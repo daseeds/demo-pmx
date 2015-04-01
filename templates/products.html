@@ -1,0 +1,48 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Dashboard</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+<h2>Products</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Reference</th>
+			<th>input Key</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for product in products %}
+		<tr>
+			<th scope="row"><a href="/products/{{product.key.id()}}">{{product.reference}}</a></th>
+			<td>{{product.inputKeys}}</a></td>
+			<td>
+				<form role="form-inline" action="/products" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'process_id', value=product.key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+
+<form class="form-inline" role="form" action="/products" method="post">
+{{ forms.input('', 'reference', value='', type='text') }}
+{{ forms.submit_button('Add') }}
+</form>
+
+
+
+{% endblock content %}

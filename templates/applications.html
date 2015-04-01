@@ -1,0 +1,36 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Applications</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>DataFlow</th>
+          <th>Configuration</th>
+          <th>PIM</th>
+          <th>RTDP</th>
+          <th>DataRepository</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for application in applications %}
+        <tr>
+          <td scope="row">{{application.account}}</td>
+          <td>{{application.dataFlow}}</td>
+          <td>{{application.configuration}}</td>
+          <td><div class="alert alert-success" role="alert">OK</div></td>
+          <td><div class="alert alert-success" role="alert">OK</div></td>
+          <td><div class="alert alert-success" role="alert">OK</div></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}

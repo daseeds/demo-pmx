@@ -1,0 +1,50 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Dashboard</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+<h2>Services</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Reference</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in services %}
+		<tr>
+			<th scope="row"><a href="/services/?filter=true&type={{service.stype}}">{{service.stype}}</a></th>
+			<td><a href="/services/{{service.key.id()}}">{{service.reference}}</a></td>
+			<td>
+				<form role="form-inline" action="/services" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'process_id', value=service.key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<form class="form-inline" role="form" action="/services" method="post">
+{{ forms.input('', 'reference', value='', type='text') }}
+{{ forms.select('Type', 'stype', serviceType) }}
+{{ forms.submit_button('Add') }}
+</form>
+
+
+
+
+
+{% endblock content %}

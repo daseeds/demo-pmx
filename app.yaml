@@ -1,0 +1,29 @@
+application: pim
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: jinja2
+  version: latest
+- name: webapp2
+  version: latest
+
+builtins:
+- appstats: on
+
+handlers:
+- url: /favicon.ico
+  static_files: static/img/favicon.ico
+  upload: static/img/favicon.ico
+- url: /apple-touch-icon.png
+  static_files: static/img/apple-touch-icon.png
+  upload: static/img/apple-touch-icon.png
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+- url: /static
+  static_dir: static
+- url: /.*
+  script: monitor.application

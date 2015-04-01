@@ -1,0 +1,338 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-6">
+		<h1 class="page-header">Matrix request</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Product {{product.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in product.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Electrical {{sercElec.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercElec.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Graphical {{sercGraph.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercGraph.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Carrier {{sercCarr.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercCarr.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Packaging {{sercPack.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercPack.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Dispatch {{sercDisp.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercDisp.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">SLA {{sercSLA.reference}}</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in sercSLA.properties %}
+					<tr>
+						<th scope="row">{{properti.get().kind}}</th>
+						<td>{{properti.get().name}}</td>
+						<td>{{properti.get().value}}</td>
+						<td>{{properti.get().site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+{% for process in processes %}
+
+<h2>Process: {{process.reference}}</h2>
+<dl class="dl-horizontal">
+	<dt>Reference</dt><dd>{{process.reference}}</dd>
+	<dt>Services covered</dt><dd>	{% for service in process.services %}{{service.get().stype}}:{{service.get().reference}}, {% endfor %}</dd>
+	<dt>Sites</dt><dd>	{% for site in process.sites %}{{site}}, {% endfor %}</dd>
+	<h4>Properties</h4>
+	{% for properti in process.properties %}
+  <dt>{{properti.get().name}}</dt><dd>{{properti.get().value}}</dd>
+	{% endfor %}
+	<h4>Instrumentation</h4>
+	{% for properti in process.instrumentation %}
+  <dt>{{properti.get().name}}</dt><dd>{{properti.get().value}}</dd>
+	{% endfor %}
+</dl>
+
+
+
+{% endfor %}
+
+
+<div class="row">
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Properties</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Kind</th>
+					<th>Name</th>
+					<th>Value</th>
+					<th>Site</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for properti in properties %}
+				<tr>
+					<th scope="row">{{properti.kind}}</th>
+					<td>{{properti.name}}</td>
+					<td>{{properti.value}}</td>
+					<td>{{properti.site}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Instrumentation</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Kind</th>
+					<th>Name</th>
+					<th>Value</th>
+					<th>Site</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for properti in instrumentation %}
+				<tr>
+					<th scope="row">{{properti.kind}}</th>
+					<td>{{properti.name}}</td>
+					<td>{{properti.value}}</td>
+					<td>{{properti.site}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Consumable</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in consumable %}
+					<tr>
+						<th scope="row">{{properti.kind}}</th>
+						<td>{{properti.name}}</td>
+						<td>{{properti.value}}</td>
+						<td>{{properti.site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Instructions</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Kind</th>
+						<th>Name</th>
+						<th>Value</th>
+						<th>Site</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for properti in instructions %}
+					<tr>
+						<th scope="row">{{properti.kind}}</th>
+						<td>{{properti.name}}</td>
+						<td>{{properti.value}}</td>
+						<td>{{properti.site}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<h2>JIF</h2>
+
+
+
+
+
+
+
+{% endblock content %}

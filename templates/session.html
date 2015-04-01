@@ -1,0 +1,97 @@
+{% extends "base2.html" %}
+{% block content %}
+
+
+<h2>Session {{session.key.id()}}</h2>
+
+<dl class="dl-horizontal">
+  <dt>Account</dt>
+  <dd>{{session.account}}</dd>
+  <dt>Data Flow</dt>
+  <dd>{{session.dataFlow}}</dd>
+  <dt>State</dt>
+  <dd>{{session.state}}</dd>
+  <dt>Orders</dt>
+  <dd>{{orders.__len__()}}</dd>
+  <dt>Workorders</dt>
+  <dd>{{workOrders.__len__()}}</dd>
+  <dt>Cards</dt>
+  <dd>{{cards}}</dd>
+  <dt>Status</dt>
+  <dd>{{session.status}} </dd>
+  <dt>Vector Logs</dt>
+  <dd><a href="vgerndvwd1251.gemalto.com:8080/NLog.Viewer?session={{session.key.id()}}">https://vgerndvwd1251.gemalto.com:8080/NLog.Viewer?session={{session.key.id()}}</a></dd>  
+</dl>
+
+<h3>Modules</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Sequence</th>
+          <th>Name</th>
+          <th>Parameter</th>
+          <th>Status</th>
+          <th>Start</th>
+          <th>Stop</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for module in modules %} 
+        <tr {% if module.status == false %}class="danger"{% endif %}>
+          <th scope="row">{{module.sequence}}</th>
+          <th>{{module.name}}</th>
+          <th>{{module.parameter}}</th>
+          <th>{{module.status}}</th>
+          <th>{{module.timeStart}}</th>
+          <th>{{module.timeStop}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<h3>Orders</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Input File(s)</th>
+          <th>Target PSC(s)</th>
+          <th>Cards</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %} 
+        <tr>
+          <th scope="row"><a href="/order/{{order.key.id()}}">{{order.key.id()}}</a></th>
+          <th>{% for inputFile in order.inputFiles %} {{inputFile}}<br> {% endfor %}</th>
+          <th>{% for site in order.sites %} {{site}}<br> {% endfor %}</th>
+          <th>{{order.cards}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<h3>Workorders</h3>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cards</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for workorder in workOrders %} 
+        <tr>
+          <th scope="row"><a href="/workorder/{{workorder.key.id()}}">{{workorder.key.id()}}</a></th>
+          <th>{{workorder.cards}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock content %}

@@ -1,0 +1,257 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Process {{process.reference}}</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+<h4>Properties</h4>
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Name</th>
+			<th>Value</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for properti in process.properties %}
+		<tr>
+			<th scope="row">{{properti.get().kind}}</th>
+			<td>{{properti.get().name}}</td>
+			<td>{{properti.get().value}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteProperty', type='hidden') }}
+					{{ forms.input('', 'id', value=properti, type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<form class="form-inline" role="form" action="/processes/{{process.key.id()}}" method="post">
+	{{ forms.input('name', 'name') }}
+	{{ forms.input('value', 'value') }}
+	{{ forms.select('Kind', 'kind', propertyKind) }}
+	{{ forms.input('', 'type', value='properties', type='hidden') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+
+<h4>Input Keys</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Sites</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for site in process.sites %}
+		<tr>
+			<td>{{site}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteSite', type='hidden') }}
+					{{ forms.input('', 'id', value=site, type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<form class="form-inline" role="form" action="/processes/{{process.key.id()}}" method="post">
+	{{ forms.input('site', 'site') }}
+	{{ forms.input('', 'type', value='addSite', type='hidden') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+<h4>Services</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sElec %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sGraph %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sCarrier %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sPack %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sDisp %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Reference</th>
+			<th>Keys</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for service in process.sSLA %}
+		<tr>
+			<td>{{service.get().stype}}</td>
+			<td>{{service.get().reference}}</td>
+			<td>{{service.get().inputKeys}}</td>
+			<td>
+				<form role="form-inline" action="/processes/{{process.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteService', type='hidden') }}
+					{{ forms.input('', 'stype', value=service.get().stype, type='hidden') }}
+					{{ forms.input('', 'id', value=service.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<form class="form-inline" role="form" action="/processes/{{process.key.id()}}" method="post">
+	{{ forms.select_2('Electrical', 'electrical_key', electrical_list) }}
+	{{ forms.select_2('Graphical', 'graphical_key', graphical_list) }}
+	{{ forms.select_2('Carrier', 'carrier_key', carrier_list) }}
+	{{ forms.select_2('Packaging', 'packaging_key', packaging_list) }}
+	{{ forms.select_2('Dispatch', 'dispatch_key', dispatch_list) }}
+	{{ forms.select_2('SLA', 'SLA_key', SLA_list) }}
+	{{ forms.input('', 'type', value='addServices', type='hidden') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+
+
+
+
+
+	{% endblock content %}

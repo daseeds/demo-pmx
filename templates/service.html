@@ -1,0 +1,90 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Service {{service.reference}}</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+<h4>Properties</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Kind</th>
+			<th>Name</th>
+			<th>Value</th>
+			<th>Site</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for properti in service.properties %}
+		<tr>
+			<th scope="row">{{properti.get().kind}}</th>
+			<td>{{properti.get().name}}</td>
+			<td>{{properti.get().value}}</td>
+			<td>{{properti.get().site}}</td>
+			<td>
+				<form role="form-inline" action="/services/{{service.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteProperty', type='hidden') }}
+					{{ forms.input('', 'id', value=properti.get().key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<form class="form-inline" role="form" action="/services/{{service.key.id()}}" method="post">
+	{{ forms.input('name', 'name') }}
+	{{ forms.input('value', 'value') }}
+	{{ forms.select('Site', 'site', site_list) }}
+	{{ forms.select('Kind', 'kind', propertyKind) }}
+	{{ forms.input('', 'type', value='properties', type='hidden') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+
+<h4>Input Keys</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for properti in service.inputKeys %}
+		<tr>
+			<td>{{properti}}</td>
+			<td>
+				<form role="form-inline" action="/services/{{service.key.id()}}" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'type', value='deleteInputKey', type='hidden') }}
+					{{ forms.input('', 'id', value=properti, type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<form class="form-inline" role="form" action="/services/{{service.key.id()}}" method="post">
+	{{ forms.input('value', 'value') }}
+	{{ forms.input('', 'type', value='inputKeys', type='hidden') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+
+
+
+
+
+
+
+	{% endblock content %}

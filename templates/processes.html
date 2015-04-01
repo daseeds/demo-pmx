@@ -1,0 +1,57 @@
+{% extends "base2.html" %}
+{% import 'forms.html' as forms %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Processes</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Reference</th>
+			<th>Sites</th>
+			<th>Electrical</th>
+			<th>Graphical</th>
+			<th>Carrier</th>
+			<th>Packaging</th>
+			<th>Dispatch</th>
+			<th>SLA</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for process in processes %}
+		<tr>
+			<th scope="row"><a href="/processes/{{process.key.id()}}">{{process.reference}}</a></th>
+			<td>{{process.sites}}</td>
+			<td>{{process.sElec}}</td>
+			<td>{{process.sGraph}}</td>
+			<td>{{process.sCarrier}}</td>
+			<td>{{process.sPack}}</td>
+			<td>{{process.sDisp}}</td>
+			<td>{{process.sSLA}}</td>
+			<td>
+				<form role="form-inline" action="/processes" method="post">
+					{{ forms.submit_button('Delete', 'btn-xs') }}
+					{{ forms.input('', 'process_id', value=process.key.id(), type='hidden') }}
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<form class="form-inline" role="form" action="/processes" method="post">
+	{{ forms.input('', 'reference', value='', type='text') }}
+	{{ forms.submit_button('Add') }}
+</form>
+
+
+
+{% endblock content %}

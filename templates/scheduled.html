@@ -1,0 +1,41 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Scheduled Applications workflow</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>DataFlow</th>
+          <th>Schedule</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">NATIXIS</td>
+          <td>CNCE CARD</td>
+          <td>Every Mon, Tue, Wed, Thu, Fri at 06:00</td>
+          <td>OK</td>
+        </tr>
+        <tr>
+          <td scope="row">NATIXIS</td>
+          <td>CNCE MAIL</td>
+          <td>Every Tue, Thu, Fri at 07:00</td>
+          <td><div class="alert alert-danger" role="alert">Missed</div></td>
+        </tr>
+        <tr>
+          <td scope="row">LA_CAIXA</td>
+          <td>CARD</td>
+          <td>Every Day at 06:00</td>
+          <td><div class="alert alert-danger" role="alert">Missed</div></td>
+        </tr>
+      </tbody>
+    </table>
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% macro input(label, name, value='', type='text') %}
+<div class="form-group">
+	<label class="col-sm-2 control-label">{{ label }}</label>
+	<div class="col-sm-10">
+		<input type="{{ type }}" class="form-control" value="{{ value|e }}" name="{{ name }}" >
+	</div>
+</div>
+{% endmacro %}
+
+{% macro select(label, name, items, value='') %}
+<div class="form-group">
+	<label class="col-sm-2 control-label">{{ label }}</label>
+	<div class="col-sm-10">
+		<select value="{{value}}" size="5" name="{{ name }}" class="form-control">
+			{% for item in items %}
+			<option {% if value==item %}selected{% endif %} value="{{item}}">{{item}}</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro select_2(label, name, items, value='') %}
+<div class="form-group">
+	<label class="col-sm-2 control-label">{{ label }}</label>
+	<div class="col-sm-10">
+		<select value="{{value}}" size="5" name="{{ name }}" class="form-control">
+			{% for item in items %}
+			<option {% if value==item %}selected{% endif %} value="{{item.value}}">{{item.text}}</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro submit_button(label, class='') %}
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+		<button type="submit" class="btn btn-primary {{class}}">{{ label }}</button>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro textarea_code(label, name, value='', rows='3') %}
+<div class="form-group">
+	<label class="col-sm-2 control-label">{{ label }}</label>
+	<div class="col-sm-10">
+		<code><textarea class="form-control" rows="{{rows}}" name="{{ name }}">{{ value|e }}</textarea> </code>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro textarea_ckeditor(label, name, value='', unique='') %}
+<div class="form-group">
+	<label class="col-sm-2 control-label" for="exampleInputPassword2">content</label>
+	<div class="col-sm-10">
+		<textarea id="editor-{{ unique }}" class="form-control" rows="5" name="{{ name }}">{{ value|e }}</textarea>
+		<script>
+		CKEDITOR.replace( 'editor-{{ unique }}' );
+		</script>
+	</div>
+</div>
+{% endmacro %}
+
+{% macro extract_dict(default, my_dict) %}
+{% if my_dict[default] %}
+{{ my_dict[default] }}
+{% else %}
+{{ default }}
+{% endif %}
+{% endmacro %}
